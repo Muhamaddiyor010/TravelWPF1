@@ -1,0 +1,170 @@
+﻿<Window x:Class="Traveluuu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Traveluuu"
+        mc:Ignorable="d"
+        Title="Dashboard" Height="650" Width="1024">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="CornerBtn" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="8" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="blue"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Image x:Name="Logoimg" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="20 15"
+                       Source="C:\Users\OsiyoComputers\source\repos\traveluu\traveluu\Images\Group 1.png"/>
+                <Label x:Name="LogoName"
+                       Content="Traveluu"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="30"
+                       FontFamily="Segoe UI Semibold"
+                       Margin="90 0 0 0"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button Style="{DynamicResource CornerBtn}"
+                            x:Name="Dashboard"
+                            Content="Dashboard"
+                            FontSize="14"
+                            FontFamily="Segoe UI Semibold"
+                            Background="White"
+                            Margin="5 22" 
+                            Click="Dashboard_Click">
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button Style="{DynamicResource CornerBtn}" 
+                         x:Name="Createbtn"
+                         Content="Add New"
+                         Click="AddNewBtn_click"
+                         FontSize="14"
+                         FontFamily="Segoe UI Semibold"
+                         Background="White"
+                         Margin="5 22">
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Style="{DynamicResource CornerBtn}"
+                         x:Name="Updatebtn"
+                         Content="Put"
+                         FontSize="14"
+                         FontFamily="Segoe UI Semibold"
+                         Background="White"
+                         Margin="5 22">
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Button Style="{DynamicResource CornerBtn}"
+                         x:Name="Removebtn"
+                         Content="Remove"
+                         FontSize="14"
+                         FontFamily="Segoe UI Semibold"
+                         Background="White"
+                         Margin="5 22">
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2">
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Button x:Name="Adminbtn"
+                        Content="Admin"
+                        FontFamily="Segoe UI Semibold"
+                        FontSize="22"
+                        Background="White"
+                        Width="200"
+                        Height="35"
+                        Style="{DynamicResource CornerBtn}">
+
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid x:Name="MenuPanel"
+                        Width="1000"
+                        Height="500">
+                <Label x:Name="Menulbl"
+                       Content="Welcome To Back Traveluu!"
+                       FontSize="48"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+                </Label>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
